@@ -1,4 +1,3 @@
-
 /* =================================
    1. GLOBAL STYLING
 ================================= */
@@ -285,11 +284,12 @@ button {
     max-width: 1000px;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 30px;
 }
 
 .photo-card {
+    grid-column: span 2;
     background: #fffaf7;
     padding: 12px 12px 22px;
     border-radius: 8px;
@@ -303,6 +303,20 @@ button {
 
 .photo-card:nth-child(2) {
     transform: rotate(2deg);
+}
+
+.photo-card:nth-child(3) {
+    transform: rotate(-1deg);
+}
+
+.photo-card:nth-child(4) {
+    grid-column: 2 / span 2;
+    transform: rotate(2deg);
+}
+
+.photo-card:nth-child(5) {
+    grid-column: 4 / span 2;
+    transform: rotate(-2deg);
 }
 
 .photo-card:hover {
@@ -643,9 +657,23 @@ button:disabled {
 
 @media (max-width: 900px) {
 
-    .timeline,
+    .timeline {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .gallery {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .photo-card,
+    .photo-card:nth-child(4) {
+        grid-column: auto;
+    }
+
+    .photo-card:nth-child(5) {
+        grid-column: 1 / -1;
+        max-width: 50%;
+        justify-self: center;
     }
 
     .timeline-card:last-child {
@@ -686,8 +714,12 @@ button:disabled {
         grid-column: auto;
     }
 
-    .photo-card:nth-child(1),
-    .photo-card:nth-child(2) {
+    .photo-card:nth-child(5) {
+        grid-column: auto;
+        max-width: none;
+    }
+
+    .photo-card:nth-child(n) {
         transform: none;
     }
 
